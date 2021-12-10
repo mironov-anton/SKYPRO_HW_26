@@ -35,3 +35,8 @@ def add_comment(COMMENTS_PATH, comment):
 def get_posts_by_search(data, s):
     results = [post for post in data if s.lower() in post["content"].lower()]
     return results
+
+
+def get_posts_by_username(data, username):
+    results = [post for post in data if username == post["poster_name"]]
+    return results

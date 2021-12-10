@@ -136,5 +136,17 @@
         "commenter_name": "бобёр",
         "pk": 23,
         "post_id": 1
+    },
+    {
+        "comment": "pinetrees!",
+        "commenter_name": "Bob",
+        "pk": 24,
+        "post_id": 3
+    },
+    {
+        "comment": "КИСЯ!!",
+        "commenter_name": "purr-purr",
+        "pk": 25,
+        "post_id": 5
     }
 ]

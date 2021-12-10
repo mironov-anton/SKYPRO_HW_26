@@ -34,7 +34,7 @@
       {% for post in results %}
       <div class="items__item item">
         <div class="item__top">
-          <a href="/user-feed.html" class="item__head">
+          <a href="/users/{{post.poster_name}}/" class="item__head">
             <div class="item__ava-wrap">
               <img src={{post.poster_avatar}} alt="" class="item__ava" width="47">
             </div>
@@ -44,7 +44,7 @@
         <a href="/post/{{post.pk}}/" class="item__post-link">
           <img src={{post.pic}} alt="" width="348" class="item__post-img">
         </a>
-        <p class="item__descr">{{ post.content }}</p>
+        <p class="item__descr">{{post.content}}</p>
         <div class="item__post-info">
           <p class="item__comments-counter">комментариев: {{post.comments_count}}</p>
           <div class="item__counter">

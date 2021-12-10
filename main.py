@@ -1,10 +1,17 @@
-from flask import Flask, render_template, request, send_from_directory, abort
-from functions import read_json, posts_with_comments_count, get_comments_by_post, add_comment, get_posts_by_search
+from flask import Flask, render_template, request, abort
+from functions import read_json, posts_with_comments_count, get_comments_by_post, add_comment, get_posts_by_search, \
+    get_posts_by_username
 
 POSTS_PATH = "data/data.json"
 COMMENTS_PATH = "data/comments.json"
 
 app = Flask(__name__)
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return "Страница не найдена. Подумайте, нужна ли она вам. Если да - попробуйте ещё раз, но честно говоря, " \
+           "вряд ли что-то изменится.", 404
 
 
 @app.route("/")
@@ -49,6 +56,11 @@ def page_search():
     return render_template('search.html', results=limited_results, results_num=len(results))
 
 
+@app.route("/users/<username>/")
+def page_user(username):
+    user_posts = get_posts_by_username(posts_with_comments_count(POSTS_PATH, COMMENTS_PATH), username)
+    return render_template("user-feed.html", user_posts=user_posts)
+
+
 if __name__ == "__main__":
-    # os.chdir(Path(os.path.abspath(__file__)).parent)  # Эта строка необходима, чтобы правильно искать json хранилища
     app.run(debug=True)

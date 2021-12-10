@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SKYPROGRAM user feed</title>
-  <link href="css/styles.min.css" rel="stylesheet">
+  <link href="/static/css/styles.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -24,89 +24,37 @@
     </div>
   </header>
   <main class="container">
+    {% for post in user_posts %}
     <section class="items">
       <div class="items__item item">
         <div class="item__top">
-          <a href="/user-feed.html" class="item__head">
+          <a href="/users/{{post.poster_name}}/" class="item__head">
             <div class="item__ava-wrap">
-              <img src="img/ava1.png" alt="" class="item__ava" width="47">
+              <img src={{post.poster_avatar}} alt="" class="item__ava" width="47">
             </div>
-            <span class="item__username">skypro.08</span>
+            <span class="item__username">{{post.poster_name}}</span>
           </a>
         </div>
-        <a href="/post.html" class="item__post-link">
-          <img src="img/post5.jpg" alt="" width="348" class="item__post-img">
+        <a href="/post/{{post.pk}}/" class="item__post-link">
+          <img src={{post.pic}} alt="" width="348" class="item__post-img">
         </a>
-        <p class="item__descr"><a href="#" class="item__tag">#food</a> Текст описания коротки...</p>
+        <p class="item__descr"><!-- <a href="#" class="item__tag">#food</a> -->{{ post.content }}</p>
         <div class="item__post-info">
-          <p class="item__comments-counter">13 комментариев</p>
+          <p class="item__comments-counter">комментариев: {{post.comments_count}}</p>
           <div class="item__counter">
-            <img src="img/eye.png" alt="" class="item__counter-icon" width="26">
-            <span class="item__counter-text">212</span>
+            <img src="https://i.ibb.co/xCrWb0M/eye.png" alt="" class="item__counter-icon" width="26">
+            <span class="item__counter-text">{{post.views_count}}</span>
           </div>
         </div>
         <div class="item__post-bottom">
-          <a href="/post.html" class="item__btn-more">Подробнее</a>
+          <a href="/post/{{post.pk}}/" class="item__btn-more">Подробнее</a>
           <button type="button" class="item__bookmark-btn">
-            <img src="img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
-          </button>
-        </div>
-      </div>
-      <div class="items__item item">
-        <div class="item__top">
-          <a href="/user-feed.html" class="item__head">
-            <div class="item__ava-wrap">
-              <img src="img/ava2.png" alt="" class="item__ava" width="47">
-            </div>
-            <span class="item__username">Username</span>
-          </a>
-        </div>
-        <a href="/post.html" class="item__post-link">
-          <img src="img/post6.jpg" alt="" width="348" class="item__post-img">
-        </a>
-        <p class="item__descr"><a href="#" class="item__tag">#food</a> Текст описания коротки...</p>
-        <div class="item__post-info">
-          <p class="item__comments-counter">Нет комментариев</p>
-          <div class="item__counter">
-            <img src="img/eye.png" alt="" class="item__counter-icon" width="26">
-            <span class="item__counter-text">1023</span>
-          </div>
-        </div>
-        <div class="item__post-bottom">
-          <a href="/post.html" class="item__btn-more">Подробнее</a>
-          <button type="button" class="item__bookmark-btn active">
-            <img src="img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
-          </button>
-        </div>
-      </div>
-      <div class="items__item item">
-        <div class="item__top">
-          <a href="user-feed.html" class="item__head">
-            <div class="item__ava-wrap">
-              <img src="img/ava2.png" alt="" class="item__ava" width="47">
-            </div>
-            <span class="item__username">Username</span>
-          </a>
-        </div>
-        <a href="/post.html" class="item__post-link">
-          <img src="img/post7.jpg" alt="" width="348" class="item__post-img">
-        </a>
-        <p class="item__descr"><a href="#" class="item__tag">#food</a> Текст описания коротки...</p>
-        <div class="item__post-info">
-          <p class="item__comments-counter">5 комментариев</p>
-          <div class="item__counter">
-            <img src="img/eye.png" alt="" class="item__counter-icon" width="26">
-            <span class="item__counter-text">1023</span>
-          </div>
-        </div>
-        <div class="item__post-bottom">
-          <a href="/post.html" class="item__btn-more">Подробнее</a>
-          <button type="button" class="item__bookmark-btn">
-            <img src="img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
+            <img src="https://i.ibb.co/Q9nJVvR/bookmark.png" alt="" class="item__bookmark-icon" width="24">
           </button>
         </div>
       </div>
     </section>
+    {% endfor %}
   </main>
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
     <symbol id="back" viewbox="0 0 19 16" fill="none" width="19" height="16">
