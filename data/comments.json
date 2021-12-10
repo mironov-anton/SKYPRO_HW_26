@@ -1,0 +1,140 @@
+[
+    {
+        "comment": "Очень здорово!",
+        "commenter_name": "hanna",
+        "pk": 1,
+        "post_id": 1
+    },
+    {
+        "comment": ":)",
+        "commenter_name": "jlia",
+        "pk": 2,
+        "post_id": 1
+    },
+    {
+        "comment": "Класс!",
+        "commenter_name": "ralf",
+        "pk": 3,
+        "post_id": 1
+    },
+    {
+        "comment": "Интересно. А где это?",
+        "commenter_name": "leo",
+        "pk": 4,
+        "post_id": 1
+    },
+    {
+        "comment": "Класс!",
+        "commenter_name": "johnny",
+        "pk": 5,
+        "post_id": 2
+    },
+    {
+        "comment": "Хе хе !",
+        "commenter_name": "hank",
+        "pk": 6,
+        "post_id": 2
+    },
+    {
+        "comment": "Забавное фото!",
+        "commenter_name": "larry",
+        "pk": 7,
+        "post_id": 2
+    },
+    {
+        "comment": "Часть вижу такие фото у друзей! Это новый тренд?",
+        "commenter_name": "leo",
+        "pk": 8,
+        "post_id": 2
+    },
+    {
+        "comment": "Выглядит неплохо )",
+        "commenter_name": "johnny",
+        "pk": 9,
+        "post_id": 3
+    },
+    {
+        "comment": "Каждый раз захожу в ленту и от тебя что то классное!",
+        "commenter_name": "hank",
+        "pk": 10,
+        "post_id": 3
+    },
+    {
+        "comment": "!!!",
+        "commenter_name": "larry",
+        "pk": 11,
+        "post_id": 3
+    },
+    {
+        "comment": "Так так, продолжай)",
+        "commenter_name": "leo",
+        "pk": 12,
+        "post_id": 3
+    },
+    {
+        "comment": "Ухты!",
+        "commenter_name": "johnny",
+        "pk": 13,
+        "post_id": 4
+    },
+    {
+        "comment": "Норм )",
+        "commenter_name": "hank",
+        "pk": 14,
+        "post_id": 4
+    },
+    {
+        "comment": "Оу!",
+        "commenter_name": "larry",
+        "pk": 15,
+        "post_id": 4
+    },
+    {
+        "comment": "Интерсно...",
+        "commenter_name": "leo",
+        "pk": 16,
+        "post_id": 4
+    },
+    {
+        "comment": "Давно тебя тут не было, с возвращением!",
+        "commenter_name": "johnny",
+        "pk": 17,
+        "post_id": 5
+    },
+    {
+        "comment": "Ничего себе, вот это ты молодец!",
+        "commenter_name": "hank",
+        "pk": 18,
+        "post_id": 5
+    },
+    {
+        "comment": "Класс!",
+        "commenter_name": "larry",
+        "pk": 19,
+        "post_id": 6
+    },
+    {
+        "comment": "Очень необычная фоторафия! Где это?",
+        "commenter_name": "hanna",
+        "pk": 20,
+        "post_id": 7
+    },
+    {
+        "comment": "тарелка - огонь",
+        "commenter_name": "anton",
+        "pk": 21,
+        "post_id": 1
+    },
+    {
+        "comment": "погодкааа",
+        "commenter_name": "мария",
+        "pk": 22,
+        "post_id": 2
+    },
+    {
+        "comment": "выдыхаю!",
+        "commenter_name": "бобёр",
+        "pk": 23,
+        "post_id": 1
+    }
+]
