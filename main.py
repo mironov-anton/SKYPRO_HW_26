@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, abort
+from flask import Flask, render_template, request, abort, redirect
 from functions import read_json, posts_with_comments_count, get_comments_by_post, add_comment, get_posts_by_search, \
-    get_posts_by_username, tags_to_links, get_posts_by_tag
+    get_posts_by_username, tags_to_links, get_posts_by_tag, add_bookmark, remove_bookmark
 
 POSTS_PATH = "data/data.json"
 COMMENTS_PATH = "data/comments.json"
+BOOKMARKS_PATH = "data/bookmarks.json"
 
 app = Flask(__name__)
 
@@ -66,6 +67,18 @@ def page_user(username):
 def page_tag(tagname):
     tag_posts = tags_to_links(get_posts_by_tag(posts_with_comments_count(POSTS_PATH, COMMENTS_PATH), tagname))
     return render_template("tag.html", tag_posts=tag_posts)
+
+
+@app.route("/bookmarks/add/<int:postid>/")
+def adding_bookmark(postid):
+    add_bookmark(BOOKMARKS_PATH, postid)
+    return redirect("/", code=302)
+
+
+@app.route("/bookmarks/remove/<int:postid>/")
+def removing_bookmark(postid):
+    remove_bookmark(BOOKMARKS_PATH, postid)
+    return redirect("/", code=302)
 
 
 if __name__ == "__main__":

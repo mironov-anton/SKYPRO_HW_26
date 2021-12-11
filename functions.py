@@ -64,3 +64,21 @@ def tags_to_links(data):
 def get_posts_by_tag(data, tag):
     results = [post for post in data if "#" + tag in post["content"]]
     return results
+
+
+def add_bookmark(BOOKMARKS_PATH, postid):
+    data = read_json(BOOKMARKS_PATH)
+    bookmark = {
+        "postid": postid
+    }
+    data.append(bookmark)
+    data = list({v["postid"]: v for v in data}.values())
+    with open(BOOKMARKS_PATH, 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
+
+
+def remove_bookmark(BOOKMARKS_PATH, postid):
+    data = read_json(BOOKMARKS_PATH)
+    data = [bookmark for bookmark in data if bookmark["postid"] != postid]
+    with open(BOOKMARKS_PATH, 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
