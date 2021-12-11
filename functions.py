@@ -40,3 +40,27 @@ def get_posts_by_search(data, s):
 def get_posts_by_username(data, username):
     results = [post for post in data if username == post["poster_name"]]
     return results
+
+
+def tags_to_links(data):
+    for post in data:
+        tags = set()
+        content = post["content"]
+        words = content.split()
+        for word in words:
+            if word.startswith('#'):
+                tags.add(word)
+        for tag in tags:
+            words_links = list()
+            for word in words:
+                if word == tag:
+                    word = '<a href="/tag/' + tag[1:] + '">' + tag + '</a>'
+                words_links.append(word)
+            words = words_links
+        post["content"] = " ".join(words)
+    return data
+
+
+def get_posts_by_tag(data, tag):
+    results = [post for post in data if "#" + tag in post["content"]]
+    return results

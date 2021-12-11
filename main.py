@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, abort
 from functions import read_json, posts_with_comments_count, get_comments_by_post, add_comment, get_posts_by_search, \
-    get_posts_by_username
+    get_posts_by_username, tags_to_links, get_posts_by_tag
 
 POSTS_PATH = "data/data.json"
 COMMENTS_PATH = "data/comments.json"
@@ -16,14 +16,14 @@ def page_not_found(e):
 
 @app.route("/")
 def page_feed():
-    posts = posts_with_comments_count(POSTS_PATH, COMMENTS_PATH)
+    posts = tags_to_links(posts_with_comments_count(POSTS_PATH, COMMENTS_PATH))
     return render_template('index.html', posts=posts)
 
 
 @app.route("/post/<int:postid>/", methods=["GET", "POST"])
 def page_post(postid):
     if request.method == 'GET':
-        for post in read_json(POSTS_PATH):
+        for post in tags_to_links(read_json(POSTS_PATH)):
             if postid == post["pk"]:
                 comments = get_comments_by_post(COMMENTS_PATH, postid)
                 return render_template('post.html', **post, comments=comments, comments_num=len(comments))
@@ -48,7 +48,7 @@ def page_search():
     s = request.args.get('s')
     if not s:
         return render_template('search.html', results_num=0)
-    results = get_posts_by_search(posts_with_comments_count(POSTS_PATH, COMMENTS_PATH), s)
+    results = tags_to_links(get_posts_by_search(posts_with_comments_count(POSTS_PATH, COMMENTS_PATH), s))
     if len(results) > 10:
         limited_results = results[:10]
     else:
@@ -58,8 +58,14 @@ def page_search():
 
 @app.route("/users/<username>/")
 def page_user(username):
-    user_posts = get_posts_by_username(posts_with_comments_count(POSTS_PATH, COMMENTS_PATH), username)
+    user_posts = tags_to_links(get_posts_by_username(posts_with_comments_count(POSTS_PATH, COMMENTS_PATH), username))
     return render_template("user-feed.html", user_posts=user_posts)
+
+
+@app.route("/tag/<tagname>/")
+def page_tag(tagname):
+    tag_posts = tags_to_links(get_posts_by_tag(posts_with_comments_count(POSTS_PATH, COMMENTS_PATH), tagname))
+    return render_template("tag.html", tag_posts=tag_posts)
 
 
 if __name__ == "__main__":
