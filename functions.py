@@ -82,3 +82,13 @@ def remove_bookmark(BOOKMARKS_PATH, postid):
     data = [bookmark for bookmark in data if bookmark["postid"] != postid]
     with open(BOOKMARKS_PATH, 'w', encoding='utf-8') as file:
         json.dump(data, file, ensure_ascii=False, indent=4)
+
+
+def get_posts_by_bookmarks(data, BOOKMARKS_PATH):
+    bookmarks = read_json(BOOKMARKS_PATH)
+    results = []
+    for bookmark in bookmarks:
+        for post in data:
+            if bookmark["postid"] == post["pk"]:
+                results.append(post)
+    return results

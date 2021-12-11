@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, abort, redirect
 from functions import read_json, posts_with_comments_count, get_comments_by_post, add_comment, get_posts_by_search, \
-    get_posts_by_username, tags_to_links, get_posts_by_tag, add_bookmark, remove_bookmark
+    get_posts_by_username, tags_to_links, get_posts_by_tag, add_bookmark, remove_bookmark, get_posts_by_bookmarks
 
 POSTS_PATH = "data/data.json"
 COMMENTS_PATH = "data/comments.json"
@@ -18,7 +18,7 @@ def page_not_found(e):
 @app.route("/")
 def page_feed():
     posts = tags_to_links(posts_with_comments_count(POSTS_PATH, COMMENTS_PATH))
-    return render_template('index.html', posts=posts)
+    return render_template('index.html', posts=posts, bookmarks_num=len(read_json(BOOKMARKS_PATH)))
 
 
 @app.route("/post/<int:postid>/", methods=["GET", "POST"])
@@ -80,6 +80,11 @@ def removing_bookmark(postid):
     remove_bookmark(BOOKMARKS_PATH, postid)
     return redirect("/", code=302)
 
+
+@app.route("/bookmarks")
+def page_bookmarks():
+    bookmarks = tags_to_links(get_posts_by_bookmarks(posts_with_comments_count(POSTS_PATH, COMMENTS_PATH), BOOKMARKS_PATH))
+    return render_template("bookmarks.html", bookmarks=bookmarks)
 
 if __name__ == "__main__":
     app.run(debug=True)
