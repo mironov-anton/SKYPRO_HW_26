@@ -10,7 +10,7 @@ def read_json(filename):
 def posts_with_comments_count(POSTS_PATH, COMMENTS_PATH):
     posts = read_json(POSTS_PATH)
     comments = read_json(COMMENTS_PATH)
-    comments_num = dict(Counter([x['post_id'] for x in comments]))
+    comments_num = dict(Counter([x["post_id"] for x in comments]))
     for post in posts:
         for key in comments_num:
             if post["pk"] == key:
@@ -28,7 +28,7 @@ def get_comments_by_post(COMMENTS_PATH, post_id):
 def add_comment(COMMENTS_PATH, comment):
     data = read_json(COMMENTS_PATH)
     data.append(comment)
-    with open(COMMENTS_PATH, 'w', encoding='utf-8') as file:
+    with open(COMMENTS_PATH, "w", encoding="utf-8") as file:
         json.dump(data, file, ensure_ascii=False, indent=4, sort_keys=True)
 
 
@@ -48,13 +48,13 @@ def tags_to_links(data):
         content = post["content"]
         words = content.split()
         for word in words:
-            if word.startswith('#'):
+            if word.startswith("#"):
                 tags.add(word)
         for tag in tags:
             words_links = list()
             for word in words:
                 if word == tag:
-                    word = '<a href="/tag/' + tag[1:] + '">' + tag + '</a>'
+                    word = '<a href="/tag/' + tag[1:] + '">' + tag + "</a>"
                 words_links.append(word)
             words = words_links
         post["content"] = " ".join(words)
@@ -68,19 +68,17 @@ def get_posts_by_tag(data, tag):
 
 def add_bookmark(BOOKMARKS_PATH, postid):
     data = read_json(BOOKMARKS_PATH)
-    bookmark = {
-        "postid": postid
-    }
+    bookmark = {"postid": postid}
     data.append(bookmark)
     data = list({v["postid"]: v for v in data}.values())
-    with open(BOOKMARKS_PATH, 'w', encoding='utf-8') as file:
+    with open(BOOKMARKS_PATH, "w", encoding="utf-8") as file:
         json.dump(data, file, ensure_ascii=False, indent=4)
 
 
 def remove_bookmark(BOOKMARKS_PATH, postid):
     data = read_json(BOOKMARKS_PATH)
     data = [bookmark for bookmark in data if bookmark["postid"] != postid]
-    with open(BOOKMARKS_PATH, 'w', encoding='utf-8') as file:
+    with open(BOOKMARKS_PATH, "w", encoding="utf-8") as file:
         json.dump(data, file, ensure_ascii=False, indent=4)
 
 
