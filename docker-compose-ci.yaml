@@ -1,0 +1,6 @@
+version: "3.9"
+services:
+  api:
+    image: naragkhuzd/flask-app-test:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    ports:
+    - 80:80
