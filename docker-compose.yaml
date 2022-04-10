@@ -1,0 +1,6 @@
+version: "3.9"
+services:
+  api:
+    image: naragkhuzd/flask-app-test:version-1
+    ports:
+    - 8000:80
