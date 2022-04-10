@@ -4,12 +4,12 @@ jobs:
   build_and_push:
     runs-on: ubuntu-latest
     steps:
+      - name: clone code
+        uses: actions/checkout@v2
       - name: linter install
         run: pip install -r linter_requirements.txt
       - name: linter check
         run: black --check .
-      - name: clone code
-        uses: actions/checkout@v2
       - name: docker build
         run: docker build -t naragkhuzd/flask-app-test:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
       - name: docker login
